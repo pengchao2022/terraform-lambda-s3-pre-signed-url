@@ -30,7 +30,7 @@ resource "aws_iam_role_policy" "lambda_s3_policy" {
 # 4. 部署 Lambda
 resource "aws_lambda_function" "presigner" {
   filename      = "lambda.zip"
-  function_name = "s3-presigner"
+  function_name = "s3-presigner-v2"
   role          = aws_iam_role.lambda_exec.arn
   handler       = "index.lambda_handler"
   runtime       = "python3.9"
