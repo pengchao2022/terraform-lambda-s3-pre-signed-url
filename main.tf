@@ -1,6 +1,6 @@
 # 1. 调用你之前那个仓库里的 S3 模块
 module "my_bucket" {
-  source           = "git::https://github.com/pengchao2022/aws-terraform-modules.git//modules/s3?ref=s3-1.5"
+  source           = "git::https://github.com/pengchao2022/aws-terraform-modules.git//modules/s3?ref=s3-1.6"
   bucket_name      = "maxwell-presign-url-2026"
   enable_website   = false # 保持私有
 }
@@ -22,7 +22,7 @@ resource "aws_iam_role_policy" "lambda_s3_policy" {
     Statement = [{
       Effect   = "Allow"
       Action   = "s3:GetObject"
-      Resource = "${module.my_bucket.s3_bucket_arn}/*"
+      Resource = "${module.my_bucket.bucket_arn}/*"
     }]
   })
 }
@@ -39,7 +39,7 @@ resource "aws_lambda_function" "presigner" {
   source_code_hash = filebase64sha256("lambda.zip")
 
   environment {
-    variables = { BUCKET_NAME = module.my_bucket.s3_bucket_name }
+    variables = { BUCKET_NAME = module.my_bucket.bucket_name }
   }
 }
 
