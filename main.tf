@@ -23,7 +23,14 @@ resource "aws_iam_role_policy" "lambda_s3_policy" {
       Effect   = "Allow"
       Action   = "s3:GetObject"
       Resource = "${module.my_bucket.bucket_arn}/*"
-    }]
+    },
+    {
+        # 这个权限对于某些 SDK 生成操作是必须的
+        Effect   = "Allow"
+        Action   = "s3:ListBucket"
+        Resource = "${module.my_bucket.bucket_arn}"
+      }
+    ]
   })
 }
 
