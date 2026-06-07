@@ -1,7 +1,7 @@
 # 1. 调用你之前那个仓库里的 S3 模块
 module "my_bucket" {
   source           = "git::https://github.com/pengchao2022/aws-terraform-modules.git//modules/s3?ref=s3-1.6"
-  bucket_name      = "maxwell-presign-url-2026"
+  bucket_name      = "maxwell-presign-url-2027"
   enable_website   = false # 保持私有
 }
 
