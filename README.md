@@ -34,11 +34,12 @@ https://gxtcrxdj5cw3vnfr6ayliqry3i0vicic.lambda-url.us-east-1.on.aws/?file=Maxwe
 - copy ths URL then go to your terminal use curl to download
 
 ```shell
-allen@192 devops % curl -o maxwell_pre_signed.pdf 'https://gxtcrxdj5cw3vnfr6ayliqry3i0vicic.lambda-url.us-east-1.on.aws/?file=Maxwell_DevSecOps.pdf'
+curl -o maxwell_pre_signed.pdf 'https://maxwell-presign-url-2027.s3.amazonaws.com/Maxwell_DevSecOps.pdf?AWSAccessKeyId=ASIAUT2CHTJWJPKPNDLN&Signature=SJTMh1byZc1WIMTYAWiC%2BSx7RWs%3D&x-amz-security-token=IQoJb3JpZ2luX2VjENb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIH3%2FN1IAinFkUVVsbWoBxw%2FlJFtke9U9a4m%2F4WFyAjA0AiEA7zZnLGqj8S%2FkC704M1sRcqsSFQy0OChWPOSvz%2F0LH20q7wMIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgwzMTc0Mjk2MTkzMDgiDMuTf2Kx0ZDdntYDnirDA7aC%2BrJAPB6sMxD3TMce0MlAv8hVYBMwizPFxTRDib2HcYRgHMbMjLiOgrmQII0UPcmwIpdy6kCuOgH4eaI%2B3OIkFw5opu%2F2Y6iXW5MBODvhbcVugS9B87igl%2FCTUnrsbB4rrpvlJWpcTwCUxHIAhys9Q6MtuggTb2G5%2FzZO1h77xuJYK%2FhquHjmmRfDZBvuFGXlPu4CVS%2FNYixDH9LGFcOoZr1NJM7Ylw1kWPedJA0rS9CWea3RLAOxoZqo%2FxswWWPoYdYuVEJ8gkGstzukhQyjRPWqk%2BquEjEVj3WNLvUByLTPBWwja0oRiehyWRjYTX3XL8wT7A2KubgqK9kXk6pTtn9hoPxwnrwumV%2B7ynoWEMkdrt2oITOWKeEQBdxqhAPxMoeqpxnhI0lLLBEXeqyvtVG3wOzGTllk%2Fm2JVs%2B%2BJ47m0LHyxmewRWcD51ZD3vcr3A22MY35opcRSVBAi5h2V1j83W%2FBx2DzmCfaVqoFqH0LsEiwjoi4dI21bEBjQdpca8yTVPM718FKBL1ThaNJvAyzoDrWJZxfUiDcm7AcLAwQz5qlKf80ciRxmbDtiiihgLy3K65JIl5d3pKvtne3vrcwneeV0QY6oQFsTDkYsIBorsn1ohi63kFkGEj08xsBU53AVF4mYMWzt9ipIU91oPahnxpkxchYsgS8BB8GNgHDv9zVOXBI3nXt7PR8Yyz%2FJj5yrgUuUpaKxEB9nr7oSjuXj3dPmAR3%2BTDcXsdyB0jbO3UfV8slOkvOz%2FW55SRCSDiBX%2FPRLfpc1vFFijVtZxRWTgJ70SjU6tH9XqTRu5lzzb9w4xM%2FK3p5pA%3D%3D&Expires=1780843066'  
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100  1348  100  1348    0     0   1518      0 --:--:-- --:--:-- --:--:--  1519
+100  150k  100  150k    0     0  50786      0  0:00:03  0:00:03 --:--:-- 50801
 allen@192 devops % 
+
 
 ```
 
