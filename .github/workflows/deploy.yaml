@@ -1,0 +1,38 @@
+name: Deploy pre-signed URL
+
+on:
+  pull_request:
+    types:
+      - closed
+
+    path:
+      - '.github/workflows/deploy.yaml'
+      - '**.tf'
+
+
+permissions:
+  id-token: write    # 必须开启，用于 OIDC 交换凭证
+  contents: read
+
+jobs:
+  terraform-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Zip Lambda Code
+        run: |
+          cd src
+          zip -r ../lambda.zip index.py
+          cd ..
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }} # 这里引用你存入 GitHub Secrets 的 ARN
+          aws-region: us-east-1
+
+      - name: Terraform Apply
+        run: |
+          terraform init
+          terraform apply -auto-approve
