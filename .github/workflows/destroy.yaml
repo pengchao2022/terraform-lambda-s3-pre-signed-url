@@ -26,9 +26,11 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
+      - name: Create dummy zip for destroy
+        run: touch lambda.zip
+
       - name: Terraform Destroy
         run: |
           terraform init
           terraform destroy -auto-approve
 
-          
