@@ -40,7 +40,7 @@ jobs:
 
       - name: Terraform Apply
         run: |
-          terraform init -reconfigure -migrate-state -force-copy
+          terraform init 
           terraform apply -auto-approve
 
       - name: Show Output
