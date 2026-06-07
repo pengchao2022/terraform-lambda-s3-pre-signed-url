@@ -25,10 +25,10 @@ resource "aws_iam_role_policy" "lambda_s3_policy" {
       Resource = "${module.my_bucket.bucket_arn}/*"
     },
     {
-        # 这个权限对于某些 SDK 生成操作是必须的
+        # 如果桶开启了加密，必须有此权限
         Effect   = "Allow"
-        Action   = "s3:ListBucket"
-        Resource = "${module.my_bucket.bucket_arn}"
+        Action   = ["kms:Decrypt"]
+        Resource = "*" 
       }
     ]
   })
