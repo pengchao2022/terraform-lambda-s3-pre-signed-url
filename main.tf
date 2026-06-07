@@ -1,6 +1,6 @@
 # 1. 调用你之前那个仓库里的 S3 模块
 module "my_bucket" {
-  source           = "git::https://github.com/pengchao2022/aws-terraform-modules.git//modules/s3?ref=s3-1.4"
+  source           = "git::https://github.com/pengchao2022/aws-terraform-modules.git//modules/s3?ref=s3-1.5"
   bucket_name      = "maxwell-presign-url-2026"
   enable_website   = false # 保持私有
 }
@@ -37,7 +37,7 @@ resource "aws_lambda_function" "presigner" {
 
   # 关键：当 zip 文件内容变化时，Terraform 会自动触发 Lambda 更新
   source_code_hash = filebase64sha256("lambda.zip")
-  
+
   environment {
     variables = { BUCKET_NAME = module.my_bucket.s3_bucket_name }
   }
