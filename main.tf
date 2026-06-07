@@ -1,8 +1,9 @@
 # call the s3 bucket module
 module "my_bucket" {
-  source           = "git::https://github.com/pengchao2022/aws-terraform-modules.git//modules/s3?ref=s3-1.6"
+  source           = "git::https://github.com/pengchao2022/aws-terraform-modules.git//modules/s3?ref=s3-1.7"
   bucket_name      = "maxwell-presign-url-2027"
   enable_website   = false # keep is private and block public
+  enable_force_destroy = true
 }
 
 # create lambda role
