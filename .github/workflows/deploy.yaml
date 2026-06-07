@@ -40,5 +40,8 @@ jobs:
 
       - name: Terraform Apply
         run: |
-          terraform init
+          terraform init -reconfigure -migrate-state -force-copy
           terraform apply -auto-approve
+
+      - name: Show Output
+        run: terraform output -raw presign_api_url
