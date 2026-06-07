@@ -1,11 +1,11 @@
-# 1. 调用你之前那个仓库里的 S3 模块
+# call the s3 bucket module
 module "my_bucket" {
   source           = "git::https://github.com/pengchao2022/aws-terraform-modules.git//modules/s3?ref=s3-1.6"
   bucket_name      = "maxwell-presign-url-2027"
-  enable_website   = false # 保持私有
+  enable_website   = false # keep is private and block public
 }
 
-# 2. 创建 Lambda 执行角色
+# create lambda role
 resource "aws_iam_role" "lambda_exec" {
   name = "s3-presign-lambda-role"
   assume_role_policy = jsonencode({
@@ -14,7 +14,7 @@ resource "aws_iam_role" "lambda_exec" {
   })
 }
 
-# 3. 授予 Lambda 读取该 Bucket 的权限
+# give lambda the access to this pre-sign bucket
 resource "aws_iam_role_policy" "lambda_s3_policy" {
   role = aws_iam_role.lambda_exec.id
   policy = jsonencode({
@@ -25,7 +25,7 @@ resource "aws_iam_role_policy" "lambda_s3_policy" {
       Resource = "${module.my_bucket.bucket_arn}/*"
     },
     {
-        # 如果桶开启了加密，必须有此权限
+        # if bucket is encrypted then need decrypt
         Effect   = "Allow"
         Action   = ["kms:Decrypt"]
         Resource = "*" 
@@ -42,7 +42,7 @@ resource "aws_lambda_function" "presigner" {
   handler       = "index.lambda_handler"
   runtime       = "python3.9"
 
-  # 关键：当 zip 文件内容变化时，Terraform 会自动触发 Lambda 更新
+  # lambda will update when zip file code changed 
   source_code_hash = filebase64sha256("lambda.zip")
 
   environment {
@@ -50,7 +50,7 @@ resource "aws_lambda_function" "presigner" {
   }
 }
 
-# 5. 创建公开访问 URL
+# create pre-signed URL 
 resource "aws_lambda_function_url" "url" {
   function_name      = aws_lambda_function.presigner.function_name
   authorization_type = "NONE"
