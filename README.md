@@ -11,6 +11,23 @@ s3 bucket block_public_acces is true , it means it's a private bucket
 
 ## Usage
 
+- The lambda function using python language you need to install boto3 on your laptop
+
+   - Prepare python virtural environment
+   ```shell
+   python3 -m venv venv
+
+   ```
+   - Activate virtural environment
+   ```shell
+   source venv/bin/activate
+   ```
+
+   - Install boto3
+   ```shell
+   pip install boto3
+   ```
+
 - The github actions deploy.yaml will automatically create pre-signed URL after PR merged to main
 
 - You will get one URL from github actions workflow like this:
